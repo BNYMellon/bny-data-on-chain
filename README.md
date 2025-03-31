@@ -1,11 +1,10 @@
-<p align="center"><img src="https://www.bny.com/content/dam/bnymellon/images/about-us/bny-logo---2024-brand-update.png" alt="BNY Logo" width="300"></p>
+<p><img src="https://www.bny.com/content/dam/bnymellon/images/about-us/bny-logo---2024-brand-update.png" alt="BNY Logo" width="300"></p>
 
 **BNY Digital Assets Business**
 
 **BNY Data On-Chain Product**
 
-**User Guide v2 [DRAFT]**
-
+**User Guide v1 – updated 1<sup>st</sup> April 2025**
 
 © The Bank of New York Mellon.  2025. All Rights Reserved.  
 
@@ -96,15 +95,16 @@ interface IBNYDataConsumer {
 ```
 
 ### 2.2 Events 
+Consumers can subscribe to events to get notified when events are emitted. Event notifications are emitted when the state of the oracle contract changes. Events are emitted independently from each other.
 
 ```javascript 
 1. event DataUpdated(uint8 indexed shareClass, uint8 indexed key, uint256 value)
 ```
 
-- **Description:** Emitted when a data point is updated 
+- **Description:** Emitted when a data field is updated. This is usually on weekdays excluding non-bank days.
 - **Data:** The share class and key pair updated with value 
 - **Topic:** `0x0f1bbd6e6dd42dc3cb226a5d2ab556b278f645a2923d672425ca1451e10a8d3e`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0x0e984a856205a4ed348aa00bdce45340c6122133680872cfca62f9857cb15a2d#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0xec025c1921bf06b1457c3f4a2d4c66a55ef7940bb8ffc7fd89c6d477876bc24b#eventlog)
 
 ```javascript 
 2. event Suspended(address account)
@@ -113,7 +113,7 @@ interface IBNYDataConsumer {
 - **Description:** Emitted when the data contract is suspended 
 - **Data:** The account that has suspended the data contract 
 - **Topic:** `0x6f123d3d54c84a7960a573b31c221dcd86e13fd849c5adb0c6ca851468cc1ae4` 
-- [Example Transaction](https://sepolia.etherscan.io/tx/0x78dea8d2f060d52e96ccb0747f7236583bb2729462da02242cee49506fafc57b#eventlog)  
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x62e634d78d56619f7ba6beea3d250784b693760f7c08e0e627da6e6d8f954dcd#eventlog)  
 
 ```javascript 
 3. event Resumed(address account)
@@ -122,7 +122,20 @@ interface IBNYDataConsumer {
 - **Description:**  Emitted when the data contract is mark as no longer suspended
 - **Data:** The account that has resumed the data contract 
 - **Topic:** `0x5d287a3a02ade76478d8449abebe9dc45b38421247132b68127dd3cd6c05f3cf`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xfbaabe32130b58d76b53df736523bda9d897e2566b8914f09e5b16afd19247a6#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x7b5b7bfa6d37671b6080d3ec3664a092b62c3bc6d4b83c9e9263942a9c4a7b81#eventlog)
+
+##### Example Scenario and Events: 
+* **Day 1**: Data is sent for two share classes, each with eight data fields into oracle contract.  
+Events emitted: 2 * 8 = 16 `DataUpdated` events. 
+
+* **Day 2**: Oracle contract is suspended, no data fields was updated.   
+Events emitted: 1 `Suspended` event. 
+
+* **Day 3**: Oracle contract resumes, data is sent for two share classes, each with eight data fields into oracle contract.   
+Events emitted: 2 * 8 = 16 `DataUpdated` events and 1 `Resumed` event (17 total). 
+
+* **Day 4**: Holiday. No updates performed.   
+Events emitted: None. 
 
 ### 2.3 Functions 
 
@@ -164,8 +177,8 @@ Should there be an instructed removal of any of the associated data below, the i
 
 |Network | Data Contract Address |
 | ----------- | ----------- |
-| Ethereum Mainnet  |  |
-| Sepolia Testnet  | [0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1](https://sepolia.etherscan.io/address/0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1) |
+| Ethereum Mainnet  | [0x7b0ec8d1d1254358a77f107118e96885eddceb16](https://etherscan.io/address/0x7b0ec8d1d1254358a77f107118e96885eddceb16) |
+| Sepolia Testnet  | [0xC2617d6b0510f7f029032bA7694880E569A84073](https://sepolia.etherscan.io/address/0xC2617d6b0510f7f029032bA7694880E569A84073) |
 
 ### 3.3 Supported Share Classes
 | shareClass Key | Associated Blockchain |
@@ -179,11 +192,12 @@ Should there be an instructed removal of any of the associated data below, the i
 | 7 | `Polygon` |
 | 8 | `Ethereum - I` |  |
 
+\* Any new share classes launched will be included in the next technical release, alongside an update to the User guide  
 
 ### 3.4 Supported Data Fields
 | dataField Key | Data Field Description | Decimal Precision* |
 | ----------- | ----------- | ----------- |
-| 1 | NAV for Valuation Date. <br/><br/> - _Not applicable for the “aggregated data” share class key = 1, will return 100 i.e. $1.00_ | 2 |
+| 1 | NAV for Valuation Date. <br/><br/> - _Not applicable for the “aggregated data” share class key = 1, will return 0_ | 2 |
 | 2 | Current Valuation Date's Shares Outstanding Value | 6 |
 | 3 | The timestamp when the transaction was last updated in Unix Epoch time format. _Unix Epoch Time format is expressed as the number of non-leap seconds which have passed since Jan 1 1970 00:00:00 UTC_ | N/A |
 | 4 | The Business Date of the Valuation for the NAV, converted to Unix Epoch format.  The time component of 00:00:00 EST is added to the business date and converted to UTC for storage in Unix Epoch format  | N/A |
@@ -192,13 +206,15 @@ Should there be an instructed removal of any of the associated data below, the i
 
 \* Divide the result by 10^decimal precision for the given field to arrive on the reported data 
 
+\*\* Any new data fields added will be included in the next technical release, alongside an update to the User guide  
+
 ### 3.5 Examples
 1. `getUint256(3, 2)`: Returns the **total number of shares outstanding** for the BUIDL **Aptos** share classes.
 2. `getUint256(7, 1)`: Returns the **reporting NAV** for the BUIDL **Polygon** share classes.
 3. `getUint256(6, 5)`: Returns the date and time until which the current data is valid for the BUIDL Optimism share class. 
 
 # 4. Code Examples
-The following on and off chain consumer examples utilize a BNY data contract deployed on Sepolia test network. The data contract address is [0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1](https://sepolia.etherscan.io/address/0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1). 
+The following on and off chain consumer examples utilize a BNY data contract deployed on Sepolia test network. The data contract address is [0xC2617d6b0510f7f029032bA7694880E569A84073](https://sepolia.etherscan.io/address/0xC2617d6b0510f7f029032bA7694880E569A84073). 
 > **Note**: The data contract above is used for testing purposes only and is **not** actively updated.
 
 ### 4.1 On-Chain Example Consumer
@@ -212,7 +228,7 @@ import { IBNYDataConsumer } from "./IBNYDataConsumer.sol";
 
 contract BNYDataConsumerExample {
     /* Update the data contract proxy address below */
-    IBNYDataConsumer private constant _oracle = IBNYDataConsumer(0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1);
+    IBNYDataConsumer private constant _oracle = IBNYDataConsumer(0xC2617d6b0510f7f029032bA7694880E569A84073);
 
     /**
      * @dev Fetches BUIDL NAV data from the BNY oracle for the Ethereum share class.
@@ -244,7 +260,7 @@ To use the sample contract on Sepolia, follow the steps below:
 
 ##### Example Result
 ``` javascript
-getBuidlNav(): 100,437808905390000,1704681758,1704603600,1704828600,114284 
+getBuidlNav(): 100, 2878306530330000, 1733355683, 1733288400, 1733427000, 106064
 ```
 
 ### 4.2 Off-Chain Example Consumer
@@ -257,11 +273,13 @@ The following example demonstrates how to consume multiple data elements from th
 2. Add `IBNYDataConsumer` to `/contracts/`.
 3. Add the required network configuration to `Hardhat.config.ts`. Include the _chain ID_ and the _JSON-RPC url_ In our test case, we add Sepolia
     ```javascript
-    config.networks.sepolia = { 
-            chainId: 11155111, 
-            url: “/* JSON-RPC url like Node as a service or a private RPC node */”, 
-            accounts: [/* specific accounts to be used if relevant */], 
-        }; 
+    config.networks.sepolia = {
+        chainId: 11155111,
+        url: "/* JSON-RPC url like Node as a service or a private RPC node */",
+        accounts: [
+            /* specific accounts to be used if relevant */
+        ],
+    };
     ```
     - Please take the appropriate precautions when storing and loading sensitive data like private keys or url tokens. 
 4. Add the `offchain-consumer.ts` script to `/scripts/`
@@ -271,11 +289,11 @@ The following example demonstrates how to consume multiple data elements from th
 
     async function main() {
         "/* Update the data contract proxy address below */"
-        const address = "0x88E6E37F6A7326AFB4574CDb4Afc774DB27a10b1";
+        const address = "0xC2617d6b0510f7f029032bA7694880E569A84073";
         const oracle: IBNYDataConsumer = await ethers.getContractAt("IBNYDataConsumer", address);
 
         const inputs = [
-            { shareClass: 2, key: 1 }
+            { shareClass: 2, key: 1 },
             { shareClass: 2, key: 2 },
             { shareClass: 2, key: 3 },
             { shareClass: 2, key: 4 },
@@ -302,7 +320,7 @@ To execute the provided script run in the shell:
 ##### Example Result
 ``` javascript
 oracle.getUint256(2, 1): 100 
-oracle.getUint256(2, 2): 411186647190000 
+oracle.getUint256(2, 2): 2878306530330000 
 oracle.getUint256(2, 3): 1733355683 
 oracle.getUint256(2, 4): 1733288400 
 oracle.getUint256(2, 5): 1733427000 
