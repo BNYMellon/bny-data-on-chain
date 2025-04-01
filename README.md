@@ -177,7 +177,7 @@ Should there be an instructed removal of any of the associated data below, the i
 
 |Network | Data Contract Address |
 | ----------- | ----------- |
-| Ethereum Mainnet  | [0x7b0ec8d1d1254358a77f107118e96885eddceb16](https://etherscan.io/address/0x7b0ec8d1d1254358a77f107118e96885eddceb16) |
+| Ethereum Mainnet  | [0x7B0eC8D1D1254358A77f107118e96885EdDCEb16](https://etherscan.io/address/0x7B0eC8D1D1254358A77f107118e96885EdDCEb16) |
 | Sepolia Testnet  | [0xC2617d6b0510f7f029032bA7694880E569A84073](https://sepolia.etherscan.io/address/0xC2617d6b0510f7f029032bA7694880E569A84073) |
 
 ### 3.3 Supported Share Classes
