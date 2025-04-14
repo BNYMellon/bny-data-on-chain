@@ -191,6 +191,7 @@ Should there be an instructed removal of any of the associated data below, the i
 | 6 | `Optimism’s OP` |
 | 7 | `Polygon` |
 | 8 | `Ethereum - I` |  |
+| 9 | `Solana` |  |
 
 \* Any new share classes launched will be included in the next technical release, alongside an update to the User guide  
 
