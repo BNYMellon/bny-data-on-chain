@@ -4,9 +4,9 @@
 
 **BNY Data On-Chain Product**
 
-**User Guide v2 – updated 28<sup>th</sup> May 2025**
+**User Guide v2 – updated 8<sup>th</sup> January 2026**
 
-© The Bank of New York Mellon.  2025. All Rights Reserved.  
+© The Bank of New York Mellon.  2026. All Rights Reserved.  
 
  
 
@@ -139,7 +139,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:** Emitted when a data field is set to store data from a specific type 
 - **Data:** The share class, key, and the desired type of data 
 - **Topic:** `0x91a97b97a6051b305ad51f93c1ccc4f8f5781b27ddcc2f041aba1017a5c23269`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xa4fb16c5faa7f15b46c266a0500b77b623616de787ccbdd216e36b14ce601b64#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x003991a8ef73717516ed8fa5aba93a997f48522aedacf20eb5ee0c296453c577#eventlog)
 
 ```javascript 
 2. event DataCleared(uint8 indexed shareClass, uint8 indexed key)
@@ -148,7 +148,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:** Emitted when a data field is cleared 
 - **Data:** The share class and key 
 - **Topic:** `0x1e1cd16fc14f8f4dbc8bbaabc13f18749563d595e318f5ebc658bbc8f6c71d20`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xa580128ecd62d6fac32833eb3036a2f1f453fa6d7b0c54914d3e4bbeefcf0e49#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x67866544bfb7232b640d8cbf021a01bde03fee9167136ea9bb927e5693994f3d#eventlog)
 
 ```javascript 
 3. event DataTypeChanged(uint8 indexed shareClass, uint8 indexed key, DataType oldType, DataType newType)
@@ -157,7 +157,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:** Emitted when a data field type is changed to store a different type of data. Not currently used in “BUIDL Data Feed” 
 - **Data:** The share class, key, the old and new types of data 
 - **Topic:** `0x6d26eb1c19877fcc7fee0be138fd600970ff7d491ee150f195371122c700a2da`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xa580128ecd62d6fac32833eb3036a2f1f453fa6d7b0c54914d3e4bbeefcf0e49#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x15878cca01101d78f060e77dbc78f9c7cabb421381f184a765dab33f4f01e12b#eventlog)
 
 ```javascript 
 4. event DataUpdated(uint8 indexed shareClass, uint8 indexed key, bytes32 value) 
@@ -166,7 +166,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:** Emitted when a data field is updated. This is usually on weekdays excluding non-bank days.
 - **Data:** The share class and key pair updated with value 
 - **Topic:** `0xfe8cb7784c01ae1334f5267aa05075d6f494b10cea556e88cde87f84aff20503`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xa4fb16c5faa7f15b46c266a0500b77b623616de787ccbdd216e36b14ce601b64#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x003991a8ef73717516ed8fa5aba93a997f48522aedacf20eb5ee0c296453c577#eventlog)
 
 ##### Suspension Mechanism Events relates to event notifications when an automated action taken due to an exception cases (e.g., NAV delayed or an Audit re-open) 
 
@@ -177,7 +177,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:** Emitted when the data contract is suspended by exception cases. If auto-suspend occurs due to NAV data delay, no event is emitted
 - **Data:** The account that has suspended the data contract 
 - **Topic:** `0x6f123d3d54c84a7960a573b31c221dcd86e13fd849c5adb0c6ca851468cc1ae4` 
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xf65cf8622b97a2273c4ae71e0f39c418381cd08276afa6f70733670352b69000#eventlog)  
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x67866544bfb7232b640d8cbf021a01bde03fee9167136ea9bb927e5693994f3d#eventlog)  
 
 ```javascript 
 6. event Resumed(address account)
@@ -186,7 +186,7 @@ Consumers can subscribe to events to get notified when events are emitted. Event
 - **Description:**  Emitted when the data contract is mark as no longer suspended
 - **Data:** The account that has resumed the data contract 
 - **Topic:** `0x5d287a3a02ade76478d8449abebe9dc45b38421247132b68127dd3cd6c05f3cf`
-- [Example Transaction](https://sepolia.etherscan.io/tx/0xd2fee98d77accced7357d4ec0be06a74d2688156b836b1d925ee7e3164ae87a1#eventlog)
+- [Example Transaction](https://sepolia.etherscan.io/tx/0x003991a8ef73717516ed8fa5aba93a997f48522aedacf20eb5ee0c296453c577#eventlog)
 
 ##### Example Scenario and Events: 
 * **Day 1**: Data is sent for two share classes, each with eight data fields into oracle contract.  
@@ -268,7 +268,7 @@ Should there be an instructed removal of any of the associated data below, the i
 |Network | Data Contract Address |
 | ----------- | ----------- |
 | Ethereum Mainnet  | [0x7B0eC8D1D1254358A77f107118e96885EdDCEb16](https://etherscan.io/address/0x7B0eC8D1D1254358A77f107118e96885EdDCEb16) |
-| Sepolia Testnet  | [0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0](https://sepolia.etherscan.io/address/0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0) |
+| Sepolia Testnet  | [0xCC75D07cBC86f306A033af29508a1b98E2178264](https://sepolia.etherscan.io/address/0xCC75D07cBC86f306A033af29508a1b98E2178264) |
 
 ### 3.3 Supported Share Classes
 | shareClass Key | Associated Blockchain |
@@ -282,6 +282,7 @@ Should there be an instructed removal of any of the associated data below, the i
 | 7 | `Polygon` |
 | 8 | `Ethereum - I` |  |
 | 9 | `Solana` |  |
+| 10 | `BNB Chain` |  |
 
 \* Any new share classes launched will be included in the next technical release, alongside an update to the User guide  
 
@@ -307,7 +308,7 @@ Should there be an instructed removal of any of the associated data below, the i
 # 4. Code Examples
 The following on and off chain consumer examples utilize a BNY data contract deployed on Sepolia test network. This example reflects only the data available currently in the “BUIDL Data Feed“ smart contract. 
 
-The data contract address is [0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0](https://sepolia.etherscan.io/address/0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0). 
+The data contract address is [0xCC75D07cBC86f306A033af29508a1b98E2178264](https://sepolia.etherscan.io/address/0xCC75D07cBC86f306A033af29508a1b98E2178264). 
 > **Note**: The data contract above is used for testing purposes only and is **not** actively updated.
 
 ### 4.1 On-Chain Example Consumer
@@ -321,7 +322,7 @@ import { IBNYDataConsumerV2 } from "./IBNYDataConsumerV2.sol";
 
 contract BNYDataConsumerExample {
     /* Update the data contract proxy address below */
-    IBNYDataConsumerV2 private constant _oracle = IBNYDataConsumerV2(0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0);
+    IBNYDataConsumerV2 private constant _oracle = IBNYDataConsumerV2(0xCC75D07cBC86f306A033af29508a1b98E2178264);
 
     /**
      * @dev Fetches BUIDL NAV data from the BNY oracle for the Ethereum share class.
@@ -404,7 +405,7 @@ function formatTimestamp(epoch: bigint): string {
 async function main() {
     // Define contract address, share classes, and key details
     const addresses = {
-        sepolia: "0x8Ef7b3d80ab549fB1012F7995b7c03A6BF0C81B0",
+        sepolia: "0xCC75D07cBC86f306A033af29508a1b98E2178264",
         mainnet: "0x7B0eC8D1D1254358A77f107118e96885EdDCEb16",
     };
 
@@ -418,6 +419,7 @@ async function main() {
         { id: 7, name: "Polygon" },
         { id: 8, name: "Ethereum - I" },
         { id: 9, name: "Solana" },
+        { id: 10, name: "BNB Chain" },
     ];
 
     const keyDetails: KeyDetails = {
