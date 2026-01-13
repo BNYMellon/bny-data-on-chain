@@ -4,7 +4,7 @@
 
 **BNY Data On-Chain Product**
 
-**User Guide v2 – updated 8<sup>th</sup> January 2026**
+**User Guide v3 – updated 12<sup>th</sup> January 2026**
 
 © The Bank of New York Mellon.  2026. All Rights Reserved.  
 
