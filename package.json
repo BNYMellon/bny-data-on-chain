@@ -1,0 +1,17 @@
+{
+  "name": "bny-data-on-chain",
+  "version": "1.0.0",
+  "description": "BNY Data On-Chain — Hardhat project for consuming BUIDL fund data from BNY's on-chain oracle",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "run:sepolia": "hardhat run scripts/offchain-consumer.ts --network sepolia",
+    "run:mainnet": "hardhat run scripts/offchain-consumer.ts --network mainnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "dotenv": "^16.4.7",
+    "hardhat": "^2.22.4"
+  },
+  "license": "UNLICENSED"
+}
