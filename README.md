@@ -4,7 +4,7 @@
 
 **BNY Data On-Chain Product**
 
-**User Guide v3 – updated 12<sup>th</sup> January 2026**
+**User Guide v4 – updated 14<sup>th</sup> August 2026**
 
 © The Bank of New York Mellon.  2026. All Rights Reserved.  
 
@@ -261,7 +261,7 @@ Any exception cases (e.g., NAV delayed or an Audit re-open), will result in the 
 ### 3.2 Data Contracts
 To retrieve data from the data contract, use the appropriate function [\[Section 2.4\]](#24-functions). The appropriate function returns the data value that is supported [\[Section 2.2\]](#22-types).  
 
-If decimals are applicable to the queried value, consumers should divide the value by the decimals associated with the data point, to get the actual numeric value. Decimals apply to 3 different fields: NAV, with a dataField key of 2; Shares outstanding, with a dataField key of 3; and Daily Distribution Rate, with a dataField key of 3.
+If decimals are applicable to the queried value, consumers should divide the value by the decimals associated with the data point, to get the actual numeric value. Decimals apply to 3 different fields: NAV, with a dataField key of 1; Shares outstanding, with a dataField key of 2; and Daily Distribution Rate, with a dataField key of 6.
 
 Should there be an instructed removal of any of the associated data below, the integer keys will be unmapped, and the type will be changed to `NOT_SET` and throw error `DataNotSet` [\[Section 2.5\]](#25-functions) when queried.
 
@@ -283,6 +283,7 @@ Should there be an instructed removal of any of the associated data below, the i
 | 8 | `Ethereum - I` |  |
 | 9 | `Solana` |  |
 | 10 | `BNB Chain` |  |
+| 11 | `Tempo` |  |
 
 \* Any new share classes launched will be included in the next technical release, alongside an update to the User guide  
 
@@ -355,7 +356,7 @@ To use the sample contract on Sepolia, follow the steps below:
 
 ##### Example Result
 ``` javascript
-getBuidlNav(): 100, 2878306530330000, 1733355683, 1733288400, 1733427000, 106064
+getBuidlNav(): 100, 2178306530330000, 1786400925, 1786334400, 1786473000, 106064
 ```
 
 ### 4.2 Off-Chain Example Consumer
@@ -420,6 +421,7 @@ async function main() {
         { id: 8, name: "Ethereum - I" },
         { id: 9, name: "Solana" },
         { id: 10, name: "BNB Chain" },
+        { id: 11, name: "Tempo" },
     ];
 
     const keyDetails: KeyDetails = {
@@ -525,9 +527,9 @@ To execute the provided script run in the shell:
 | index | Share Class ID | Share Class Name | Key | Field Name | On-chain Value | Formatted Value |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 7 | 2 | 'Ethereum - A' | 1 | 'NAV Value' | '100' | '1.00' |
-| 8 | 2 | 'Ethereum - A' | 2 | 'Shares Outstanding' | '2878306530330000' | '2,878,306,530.330000' |
-| 9 | 2 | 'Ethereum - A' | 3 | 'Last Update Timestamp' | '1743715725' | '4/3/2025, 5:28:45 PM' |
-| 10 | 2 | 'Ethereum - A' | 4 | 'Valuation Date' | '1743652800' | '4/3/2025, 12:00:00 AM' |
-| 11 | 2 | 'Ethereum - A' | 5 | 'Effective Until Timestamp' | '1743791400' | '4/4/2025, 2:30:00 PM' |
+| 8 | 2 | 'Ethereum - A' | 2 | 'Shares Outstanding' | '2178306530330000' | '2,178,306,530.330000' |
+| 9 | 2 | 'Ethereum - A' | 3 | 'Last Update Timestamp' | '1786400925' | '8/10/2026, 6:28:45 PM' |
+| 10 | 2 | 'Ethereum - A' | 4 | 'Valuation Date' | '1786334400' | '8/10/2026, 12:00:00 AM' |
+| 11 | 2 | 'Ethereum - A' | 5 | 'Effective Until Timestamp' | '1786473000' | '8/11/2026, 2:30:00 PM' |
 | 12 | 2 | 'Ethereum - A' | 6 | 'Daily Distribution Rate' | '106064' | '0.000106064' |
 
